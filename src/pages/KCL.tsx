@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -105,38 +104,36 @@ const KCL = () => {
                 <CardContent>
                   <div className="flex justify-center p-4">
                     <div className="relative w-60 h-60">
-                      {/* Node/Junction */}
                       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-circuit-junction flex items-center justify-center text-white font-bold">
                         Node
                       </div>
                       
-                      {/* Current arrows */}
-                      <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-24 h-6 bg-circuit-wire">
-                        <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
-                        <div className="absolute w-full flex justify-center items-center text-white">
+                      <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-24 h-6 bg-circuit-wire flex items-center">
+                        <div className="absolute w-full text-center text-white text-xs truncate px-1">
                           I₁ = 2A
                         </div>
+                        <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
                       </div>
                       
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-24 w-6 bg-circuit-wire">
-                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
-                        <div className="absolute h-full w-full flex justify-center items-center text-white">
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-24 w-6 bg-circuit-wire flex justify-center">
+                        <div className="absolute h-full text-center text-white text-xs truncate rotate-90 flex items-center">
                           I₂ = 3A
                         </div>
+                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
                       </div>
                       
-                      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-24 h-6 bg-circuit-wire">
-                        <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
-                        <div className="absolute w-full flex justify-center items-center text-white">
+                      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-24 h-6 bg-circuit-wire flex items-center justify-end">
+                        <div className="absolute w-full text-center text-white text-xs truncate px-1">
                           I₃ = 4A
                         </div>
+                        <div className="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
                       </div>
                       
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-24 w-6 bg-circuit-wire">
-                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
-                        <div className="absolute h-full w-full flex justify-center items-center text-white">
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-24 w-6 bg-circuit-wire flex justify-center">
+                        <div className="absolute h-full text-center text-white text-xs truncate rotate-90 flex items-center">
                           I₄ = 1A
                         </div>
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-circuit-wire rotate-45"></div>
                       </div>
                     </div>
                   </div>
@@ -223,12 +220,10 @@ const KCL = () => {
               <CardContent>
                 <div className="mb-6">
                   <div className="relative w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
-                    {/* Node/Junction */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-circuit-junction flex items-center justify-center text-white font-bold text-lg shadow-lg">
                       Junction
                     </div>
                     
-                    {/* Current arrows */}
                     {currents.map((current) => {
                       let positionClass = "";
                       let arrowDirection = "";
@@ -262,7 +257,6 @@ const KCL = () => {
                             <span className="text-xs">{current.value}A</span>
                           </div>
                           
-                          {/* Wire */}
                           <div className={`absolute ${
                             current.id === "i1" ? "w-32 h-1 bg-circuit-wire left-full top-1/2 -translate-y-1/2" :
                             current.id === "i2" ? "h-32 w-1 bg-circuit-wire top-full left-1/2 -translate-x-1/2" :
