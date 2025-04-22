@@ -72,21 +72,29 @@ const Practice = () => {
                       Node
                     </div>
                     
-                    {/* Current arrows */}
-                    <div className="absolute top-1/2 left-0 transform -translate-y-1/2 h-4 w-24 bg-circuit-wire flex items-center">
-                      <span className="ml-2 text-white">2A →</span>
+                    {/* Current arrows - Improved to ensure text is fully visible */}
+                    <div className="absolute top-1/2 left-0 transform -translate-y-1/2 h-4 w-32 flex items-center">
+                      <div className="h-4 w-24 bg-circuit-wire flex items-center">
+                        <span className="ml-2 text-white whitespace-nowrap">2A →</span>
+                      </div>
                     </div>
                     
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-24 bg-circuit-wire flex justify-center">
-                      <span className="mt-2 text-white">3A ↓</span>
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-32 flex justify-center">
+                      <div className="h-24 w-4 bg-circuit-wire flex flex-col justify-start items-center">
+                        <span className="mt-2 text-white whitespace-nowrap">3A ↓</span>
+                      </div>
                     </div>
                     
-                    <div className="absolute top-1/2 right-0 transform -translate-y-1/2 h-4 w-24 bg-circuit-wire flex items-center justify-end">
-                      <span className="mr-2 text-white">← ?A</span>
+                    <div className="absolute top-1/2 right-0 transform -translate-y-1/2 h-4 w-32 flex items-center justify-end">
+                      <div className="h-4 w-24 bg-circuit-wire flex items-center justify-end">
+                        <span className="mr-2 text-white whitespace-nowrap">← ?A</span>
+                      </div>
                     </div>
                     
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-24 bg-circuit-wire flex justify-center">
-                      <span className="mb-2 text-white">1A ↑</span>
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-32 flex justify-center">
+                      <div className="h-24 w-4 bg-circuit-wire flex flex-col justify-end items-center">
+                        <span className="mb-2 text-white whitespace-nowrap">1A ↑</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -130,7 +138,7 @@ const Practice = () => {
               <CardContent className="space-y-4">
                 <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
                   <div className="relative w-full max-w-sm mx-auto h-64">
-                    {/* Node/Junction */}
+                    {/* Node/Junction - Improved labels */}
                     <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-circuit-junction flex items-center justify-center text-white font-bold">
                       Node A
                     </div>
@@ -139,25 +147,35 @@ const Practice = () => {
                       Node B
                     </div>
                     
-                    {/* Current arrows */}
-                    <div className="absolute top-1/2 left-0 transform -translate-y-1/2 h-4 w-16 bg-circuit-wire flex items-center">
-                      <span className="ml-2 text-white">6A →</span>
+                    {/* Current arrows - Fixed text visibility */}
+                    <div className="absolute top-1/2 left-0 transform -translate-y-1/2 flex items-center">
+                      <div className="h-4 w-16 bg-circuit-wire flex items-center">
+                        <span className="ml-2 text-white whitespace-nowrap">6A →</span>
+                      </div>
                     </div>
                     
-                    <div className="absolute top-1/4 left-1/3 transform -translate-x-1/2 h-10 w-4 bg-circuit-wire flex justify-center">
-                      <span className="mt-0 text-white">?A ↓</span>
+                    <div className="absolute top-1/4 left-1/3 transform -translate-x-1/2 flex justify-center">
+                      <div className="h-10 w-4 bg-circuit-wire flex flex-col justify-start items-center">
+                        <span className="mt-0 text-white whitespace-nowrap rotate-0">?A ↓</span>
+                      </div>
                     </div>
                     
-                    <div className="absolute top-1/2 left-[45%] transform -translate-y-1/2 h-4 w-[15%] bg-circuit-wire flex items-center justify-center">
-                      <span className="text-white">→ 3A →</span>
+                    <div className="absolute top-1/2 left-[45%] transform -translate-y-1/2 flex items-center">
+                      <div className="h-4 w-[100px] bg-circuit-wire flex items-center justify-center">
+                        <span className="text-white whitespace-nowrap">→ 3A →</span>
+                      </div>
                     </div>
                     
-                    <div className="absolute top-1/2 right-0 transform -translate-y-1/2 h-4 w-16 bg-circuit-wire flex items-center justify-end">
-                      <span className="mr-2 text-white">← 2A</span>
+                    <div className="absolute top-1/2 right-0 transform -translate-y-1/2 flex items-center justify-end">
+                      <div className="h-4 w-16 bg-circuit-wire flex items-center justify-end">
+                        <span className="mr-2 text-white whitespace-nowrap">← 2A</span>
+                      </div>
                     </div>
                     
-                    <div className="absolute bottom-1/4 right-1/4 transform -translate-x-1/2 h-10 w-4 bg-circuit-wire flex justify-center">
-                      <span className="mb-0 text-white">?A ↑</span>
+                    <div className="absolute bottom-1/4 right-1/4 transform -translate-x-1/2 flex justify-center">
+                      <div className="h-10 w-4 bg-circuit-wire flex flex-col justify-end items-center">
+                        <span className="mb-0 text-white whitespace-nowrap rotate-0">?A ↑</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -245,37 +263,37 @@ const Practice = () => {
               <CardContent className="space-y-4">
                 <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
                   <div className="relative w-full max-w-sm mx-auto h-64">
-                    {/* Circuit diagram */}
+                    {/* Circuit diagram - Improved component sizing and text placement */}
                     <div className="w-full h-full relative">
                       {/* Battery */}
-                      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-20 bg-circuit-battery rounded-md flex flex-col items-center justify-center text-white shadow-md">
+                      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-24 bg-circuit-battery rounded-md flex flex-col items-center justify-center text-white shadow-md">
                         <div className="h-1/2 border-b border-white w-full flex items-center justify-center">+</div>
                         <div className="h-1/2 w-full flex items-center justify-center">-</div>
                       </div>
-                      <div className="absolute left-16 top-1/2 transform -translate-y-1/2 text-sm">
-                        <span className="text-circuit-battery font-medium">12V</span>
+                      <div className="absolute left-[56px] top-1/2 transform -translate-y-1/2 text-sm">
+                        <span className="text-circuit-battery font-medium whitespace-nowrap">12V</span>
                       </div>
                       
                       {/* Wire Loop */}
-                      <div className="absolute left-[56px] right-[32px] top-[32px] h-2 bg-circuit-wire"></div>
-                      <div className="absolute right-[32px] top-[32px] bottom-[32px] w-2 bg-circuit-wire"></div>
-                      <div className="absolute left-[56px] right-[32px] bottom-[32px] h-2 bg-circuit-wire"></div>
+                      <div className="absolute left-[56px] right-[36px] top-[32px] h-2 bg-circuit-wire"></div>
+                      <div className="absolute right-[36px] top-[32px] bottom-[32px] w-2 bg-circuit-wire"></div>
+                      <div className="absolute left-[56px] right-[36px] bottom-[32px] h-2 bg-circuit-wire"></div>
                       <div className="absolute left-[56px] top-[32px] bottom-[32px] w-2 bg-circuit-wire"></div>
                       
-                      {/* Resistors */}
-                      <div className="absolute top-[32px] left-2/3 transform -translate-x-1/2 -translate-y-1/2 w-32 h-8 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md">
-                        <span>R₁ = 100Ω</span>
+                      {/* Resistors - Increased size and improved label visibility */}
+                      <div className="absolute top-[32px] left-2/3 transform -translate-x-1/2 -translate-y-1/2 w-36 h-12 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md">
+                        <span className="whitespace-nowrap">R₁ = 100Ω</span>
                       </div>
-                      <div className="absolute top-2/3 right-[32px] transform translate-x-1/2 -translate-y-1/2 h-24 w-8 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md rotate-90">
-                        <span className="rotate-180">R₂ = ?Ω</span>
+                      <div className="absolute top-2/3 right-[36px] transform translate-x-1/2 -translate-y-1/2 h-28 w-12 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md rotate-90">
+                        <span className="rotate-180 whitespace-nowrap">R₂ = ?Ω</span>
                       </div>
                       
-                      {/* Voltage Labels */}
+                      {/* Voltage Labels - Repositioned for better visibility */}
                       <div className="absolute top-14 right-1/3 text-sm">
-                        <span className="text-circuit-resistor font-medium">5V</span>
+                        <span className="text-circuit-resistor font-medium whitespace-nowrap bg-black/30 px-1 rounded">5V</span>
                       </div>
-                      <div className="absolute bottom-1/3 right-14 text-sm">
-                        <span className="text-circuit-resistor font-medium">?V</span>
+                      <div className="absolute bottom-1/3 right-16 text-sm">
+                        <span className="text-circuit-resistor font-medium whitespace-nowrap bg-black/30 px-1 rounded">?V</span>
                       </div>
                     </div>
                   </div>
@@ -321,51 +339,51 @@ const Practice = () => {
                 <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
                   <div className="relative w-full max-w-sm mx-auto h-64">
                     <div className="w-full h-full relative">
-                      {/* Battery 1 */}
-                      <div className="absolute left-4 top-1/3 transform -translate-y-1/2 w-10 h-20 bg-circuit-battery rounded-md flex flex-col items-center justify-center text-white shadow-md">
+                      {/* Battery 1 - Improved sizing and label visibility */}
+                      <div className="absolute left-4 top-1/3 transform -translate-y-1/2 w-12 h-20 bg-circuit-battery rounded-md flex flex-col items-center justify-center text-white shadow-md">
                         <div className="h-1/2 border-b border-white w-full flex items-center justify-center">+</div>
                         <div className="h-1/2 w-full flex items-center justify-center">-</div>
                       </div>
-                      <div className="absolute left-16 top-1/3 transform -translate-y-1/2 text-sm">
-                        <span className="text-circuit-battery font-medium">?V</span>
+                      <div className="absolute left-20 top-1/3 transform -translate-y-1/2 text-sm">
+                        <span className="text-circuit-battery font-medium whitespace-nowrap bg-black/30 px-1 rounded">?V</span>
                       </div>
                       
                       {/* Battery 2 */}
-                      <div className="absolute left-4 bottom-1/3 transform translate-y-1/2 w-10 h-20 bg-circuit-battery rounded-md flex flex-col items-center justify-center text-white shadow-md">
+                      <div className="absolute left-4 bottom-1/3 transform translate-y-1/2 w-12 h-20 bg-circuit-battery rounded-md flex flex-col items-center justify-center text-white shadow-md">
                         <div className="h-1/2 border-b border-white w-full flex items-center justify-center">+</div>
                         <div className="h-1/2 w-full flex items-center justify-center">-</div>
                       </div>
-                      <div className="absolute left-16 bottom-1/3 transform translate-y-1/2 text-sm">
-                        <span className="text-circuit-battery font-medium">6V</span>
+                      <div className="absolute left-20 bottom-1/3 transform translate-y-1/2 text-sm">
+                        <span className="text-circuit-battery font-medium whitespace-nowrap bg-black/30 px-1 rounded">6V</span>
                       </div>
                       
-                      {/* Wire Loop */}
-                      <div className="absolute left-[56px] right-[32px] top-[45px] h-2 bg-circuit-wire"></div>
-                      <div className="absolute right-[32px] top-[45px] bottom-[45px] w-2 bg-circuit-wire"></div>
-                      <div className="absolute left-[56px] right-[32px] bottom-[45px] h-2 bg-circuit-wire"></div>
-                      <div className="absolute left-[56px] top-[45px] h-[22%] w-2 bg-circuit-wire"></div>
-                      <div className="absolute left-[56px] bottom-[45px] h-[22%] w-2 bg-circuit-wire"></div>
+                      {/* Wire Loop - Adjusted spacing for clarity */}
+                      <div className="absolute left-[60px] right-[36px] top-[45px] h-2 bg-circuit-wire"></div>
+                      <div className="absolute right-[36px] top-[45px] bottom-[45px] w-2 bg-circuit-wire"></div>
+                      <div className="absolute left-[60px] right-[36px] bottom-[45px] h-2 bg-circuit-wire"></div>
+                      <div className="absolute left-[60px] top-[45px] h-[22%] w-2 bg-circuit-wire"></div>
+                      <div className="absolute left-[60px] bottom-[45px] h-[22%] w-2 bg-circuit-wire"></div>
                       
-                      {/* Resistors */}
-                      <div className="absolute top-[45px] right-1/3 transform -translate-x-1/2 -translate-y-1/2 w-32 h-8 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md">
-                        <span>R₁ = 200Ω</span>
+                      {/* Resistors - Improved sizing for label visibility */}
+                      <div className="absolute top-[45px] right-1/3 transform -translate-x-1/2 -translate-y-1/2 w-36 h-12 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md">
+                        <span className="whitespace-nowrap">R₁ = 200Ω</span>
                       </div>
-                      <div className="absolute right-[32px] top-1/2 transform translate-x-1/2 -translate-y-1/2 h-32 w-8 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md rotate-90">
-                        <span className="rotate-180">R₂ = 300Ω</span>
+                      <div className="absolute right-[36px] top-1/2 transform translate-x-1/2 -translate-y-1/2 h-36 w-12 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md rotate-90">
+                        <span className="rotate-180 whitespace-nowrap">R₂ = 300Ω</span>
                       </div>
-                      <div className="absolute bottom-[45px] right-1/3 transform -translate-x-1/2 translate-y-1/2 w-32 h-8 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md">
-                        <span>R₃ = 100Ω</span>
+                      <div className="absolute bottom-[45px] right-1/3 transform -translate-x-1/2 translate-y-1/2 w-36 h-12 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md">
+                        <span className="whitespace-nowrap">R₃ = 100Ω</span>
                       </div>
                       
-                      {/* Voltage Labels */}
+                      {/* Voltage Labels - Added background for better readability */}
                       <div className="absolute top-12 right-1/4 text-sm">
-                        <span className="text-circuit-resistor font-medium">10V</span>
+                        <span className="text-circuit-resistor font-medium whitespace-nowrap bg-black/30 px-1 rounded">10V</span>
                       </div>
-                      <div className="absolute top-1/2 right-14 text-sm">
-                        <span className="text-circuit-resistor font-medium">15V</span>
+                      <div className="absolute top-1/2 right-16 text-sm">
+                        <span className="text-circuit-resistor font-medium whitespace-nowrap bg-black/30 px-1 rounded">15V</span>
                       </div>
                       <div className="absolute bottom-12 right-1/4 text-sm">
-                        <span className="text-circuit-resistor font-medium">5V</span>
+                        <span className="text-circuit-resistor font-medium whitespace-nowrap bg-black/30 px-1 rounded">5V</span>
                       </div>
                     </div>
                   </div>
