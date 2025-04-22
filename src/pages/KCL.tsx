@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -22,7 +23,9 @@ const KCL = () => {
   
   const [practiceAnswers, setPracticeAnswers] = useState({
     problem1: "",
-    problem2: ""
+    problem2: "",
+    problem2Value: "",
+    problem2Direction: "out" // Default direction
   });
   
   useEffect(() => {
