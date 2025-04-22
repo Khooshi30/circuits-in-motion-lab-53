@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -26,7 +25,11 @@ const KVL = () => {
   const [kvlResult, setKvlResult] = useState(() => checkKVL(voltages));
   const [activeTab, setActiveTab] = useState("learn");
   
-  // Update voltage drops across resistors when current or resistance changes
+  const [practiceAnswers, setPracticeAnswers] = useState({
+    problem1: "",
+    problem2: ""
+  });
+  
   useEffect(() => {
     setVoltages(prev => prev.map(voltage => {
       if (voltage.id === "v2") {
@@ -38,7 +41,6 @@ const KVL = () => {
     }));
   }, [current, resistances]);
   
-  // Update KVL check when voltages change
   useEffect(() => {
     setKvlResult(checkKVL(voltages));
   }, [voltages]);
@@ -48,7 +50,6 @@ const KVL = () => {
       v.id === id ? { ...v, value } : v
     ));
     
-    // If we're updating the battery voltage, recalculate the current
     if (id === "v1") {
       const totalResistance = resistances.reduce((sum, r) => sum + r.value, 0);
       setCurrent(Math.abs(value) / totalResistance);
@@ -60,7 +61,6 @@ const KVL = () => {
       r.id === id ? { ...r, value } : r
     ));
     
-    // When resistances change, recalculate the current
     const totalResistance = resistances
       .map(r => r.id === id ? value : r.value)
       .reduce((sum, r) => sum + r, 0);
@@ -74,6 +74,22 @@ const KVL = () => {
       toast.success("Correct! Kirchhoff's Voltage Law is satisfied.");
     } else {
       toast.error(`Not quite. The sum of voltages around the loop is ${kvlResult.sum.toFixed(2)}V, not 0V.`);
+    }
+  };
+  
+  const handlePracticeAnswerChange = (problem: string, value: string) => {
+    setPracticeAnswers(prev => ({
+      ...prev,
+      [problem]: value
+    }));
+  };
+  
+  const checkPracticeAnswer = (problem: string, correctAnswer: number) => {
+    const userAnswer = parseFloat(practiceAnswers[problem] || "0");
+    if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+      toast.success("Correct! Well done!");
+    } else {
+      toast.error(`Not quite. The correct answer is ${correctAnswer}V.`);
     }
   };
   
@@ -133,28 +149,23 @@ const KVL = () => {
                 <CardContent>
                   <div className="flex justify-center p-4">
                     <div className="relative w-64 h-64 border-2 border-circuit-wire rounded-lg">
-                      {/* Battery */}
                       <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2 w-8 h-16 bg-circuit-battery flex flex-col items-center justify-center text-white font-bold rounded">
                         <div className="h-1/2 border-b border-white flex items-center">+</div>
                         <div className="h-1/2 flex items-center">-</div>
                       </div>
                       
-                      {/* Resistor 1 */}
                       <div className="absolute top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-16 h-8 bg-circuit-resistor flex items-center justify-center text-white font-bold rounded">
                         R₁
                       </div>
                       
-                      {/* Resistor 2 */}
                       <div className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 w-8 h-16 bg-circuit-resistor flex items-center justify-center text-white font-bold rounded">
                         R₂
                       </div>
                       
-                      {/* Current Flow */}
                       <div className="absolute top-1/4 left-1/4 text-circuit-current font-medium">
                         I = 0.05A
                       </div>
                       
-                      {/* Voltage Labels */}
                       <div className="absolute bottom-4 left-4 text-circuit-battery font-medium">
                         V = 9V
                       </div>
@@ -251,9 +262,7 @@ const KVL = () => {
               <CardContent>
                 <div className="mb-6">
                   <div className="relative w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden p-4">
-                    {/* Circuit Diagram */}
                     <div className="h-full w-full relative">
-                      {/* Battery */}
                       <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-20 bg-circuit-battery rounded-md flex flex-col items-center justify-center text-white shadow-md">
                         <div className="h-1/2 border-b border-white w-full flex items-center justify-center">+</div>
                         <div className="h-1/2 w-full flex items-center justify-center">-</div>
@@ -262,10 +271,8 @@ const KVL = () => {
                         <span className="text-circuit-battery font-medium">{voltages[0].value}V</span>
                       </div>
                       
-                      {/* Top Wire */}
                       <div className="absolute left-[56px] top-[32px] w-[calc(100%-112px)] h-2 bg-circuit-wire"></div>
                       
-                      {/* Resistor 1 */}
                       <div className="absolute top-[32px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-8 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md">
                         <span>{resistances[0].label} = {resistances[0].value}Ω</span>
                       </div>
@@ -273,26 +280,21 @@ const KVL = () => {
                         <span className="text-circuit-resistor font-medium">{Math.abs(voltages[1].value).toFixed(1)}V</span>
                       </div>
                       
-                      {/* Right Wire */}
                       <div className="absolute right-[32px] top-[32px] w-2 h-[calc(100%-64px)] bg-circuit-wire"></div>
                       
-                      {/* Resistor 2 */}
                       <div className="absolute right-4 top-1/2 transform -translate-y-1/2 translate-x-1/2 h-24 w-8 bg-circuit-resistor rounded flex items-center justify-center text-white shadow-md rotate-90">
                         <span className="rotate-180">{resistances[1].label} = {resistances[1].value}Ω</span>
                       </div>
-                      <div className="absolute bottom-1/3 right-16 text-sm">
+                      <div className="absolute bottom-1/3 right-4 text-sm">
                         <span className="text-circuit-resistor font-medium">{Math.abs(voltages[2].value).toFixed(1)}V</span>
                       </div>
                       
-                      {/* Bottom Wire */}
                       <div className="absolute left-[56px] bottom-[32px] w-[calc(100%-112px)] h-2 bg-circuit-wire"></div>
                       
-                      {/* Current Flow */}
                       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-circuit-current/10 px-2 py-1 rounded-full">
                         <span className="text-circuit-current font-medium">I = {current.toFixed(3)}A</span>
                       </div>
                       
-                      {/* Current Flow Animation */}
                       <div className="absolute left-[56px] top-[32px] w-[calc(100%-112px)] h-2 overflow-hidden">
                         <div className="absolute w-4 h-2 bg-white/30 animate-current-flow"></div>
                       </div>
@@ -496,8 +498,10 @@ const KVL = () => {
                         type="number" 
                         placeholder="Enter correct voltage for resistor 2..."
                         className="max-w-xs"
+                        value={practiceAnswers.problem1}
+                        onChange={(e) => handlePracticeAnswerChange("problem1", e.target.value)}
                       />
-                      <Button>Check Answer</Button>
+                      <Button onClick={() => checkPracticeAnswer("problem1", 7)}>Check Answer</Button>
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       Apply KVL: ∑V = 0 around the loop.
@@ -515,8 +519,10 @@ const KVL = () => {
                         type="number" 
                         placeholder="Enter voltage for resistor 3..."
                         className="max-w-xs"
+                        value={practiceAnswers.problem2}
+                        onChange={(e) => handlePracticeAnswerChange("problem2", e.target.value)}
                       />
-                      <Button>Check Answer</Button>
+                      <Button onClick={() => checkPracticeAnswer("problem2", 3)}>Check Answer</Button>
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       Remember to account for the polarities of all sources and voltage drops.

@@ -20,6 +20,11 @@ const KCL = () => {
   const [kclResult, setKclResult] = useState(() => checkKCL(currents));
   const [activeTab, setActiveTab] = useState("learn");
   
+  const [practiceAnswers, setPracticeAnswers] = useState({
+    problem1: "",
+    problem2: ""
+  });
+  
   useEffect(() => {
     setKclResult(checkKCL(currents));
   }, [currents]);
@@ -45,6 +50,30 @@ const KCL = () => {
       toast.success("Correct! Kirchhoff's Current Law is satisfied.");
     } else {
       toast.error("Not quite. The sum of currents entering doesn't equal the sum of currents leaving.");
+    }
+  };
+  
+  const handlePracticeAnswerChange = (problem: string, value: string) => {
+    setPracticeAnswers(prev => ({
+      ...prev,
+      [problem]: value
+    }));
+  };
+  
+  const checkPracticeAnswer = (problem: string, correctAnswer: number) => {
+    const userAnswer = parseFloat(practiceAnswers[problem] || "0");
+    if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+      toast.success("Correct! Well done!");
+    } else {
+      toast.error(`Not quite. The correct answer is ${correctAnswer}A.`);
+    }
+  };
+  
+  const checkKCLSatisfied = (isSatisfied: boolean) => {
+    if (isSatisfied) {
+      toast.success("Correct! KCL is not satisfied in this example.");
+    } else {
+      toast.error("Not quite. Look at the currents again and check if they balance.");
     }
   };
   
@@ -419,8 +448,10 @@ const KCL = () => {
                         type="number" 
                         placeholder="Enter I₃ value..."
                         className="max-w-xs"
+                        value={practiceAnswers.problem1}
+                        onChange={(e) => handlePracticeAnswerChange("problem1", e.target.value)}
                       />
-                      <Button>Check Answer</Button>
+                      <Button onClick={() => checkPracticeAnswer("problem1", 7)}>Check Answer</Button>
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       Try working out the equation before checking your answer.
@@ -435,17 +466,85 @@ const KCL = () => {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 items-center mb-4">
                       <div className="flex gap-2">
-                        <Button variant="outline">KCL is satisfied</Button>
-                        <Button variant="outline">KCL is NOT satisfied</Button>
+                        <Button 
+                          variant={practiceAnswers.problem2 === "false" ? "default" : "outline"}
+                          onClick={() => handlePracticeAnswerChange("problem2", "false")}
+                        >
+                          KCL is NOT satisfied
+                        </Button>
+                        <Button 
+                          variant={practiceAnswers.problem2 === "true" ? "default" : "outline"}
+                          onClick={() => handlePracticeAnswerChange("problem2", "true")}
+                        >
+                          KCL is satisfied
+                        </Button>
                       </div>
+                      <Button onClick={() => checkKCLSatisfied(practiceAnswers.problem2 === "false")}>Check Answer</Button>
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                       Analyze the given currents and determine if they satisfy Kirchhoff's Current Law.
                     </p>
+                    {practiceAnswers.problem2 === "false" && (
+                      <div className="mt-4">
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                          What additional current is needed to satisfy KCL?
+                        </p>
+                        <div className="flex gap-2 items-center">
+                          <Input 
+                            type="number" 
+                            placeholder="Enter current value..."
+                            className="max-w-xs"
+                            value={practiceAnswers.problem2Value}
+                            onChange={(e) => handlePracticeAnswerChange("problem2Value", e.target.value)}
+                          />
+                          <div className="flex gap-2">
+                            <Button 
+                              size="sm" 
+                              variant={practiceAnswers.problem2Direction === "in" ? "default" : "outline"}
+                              onClick={() => handlePracticeAnswerChange("problem2Direction", "in")}
+                            >
+                              Entering
+                            </Button>
+                            <Button 
+                              size="sm" 
+                              variant={practiceAnswers.problem2Direction === "out" ? "default" : "outline"}
+                              onClick={() => handlePracticeAnswerChange("problem2Direction", "out")}
+                            >
+                              Leaving
+                            </Button>
+                          </div>
+                          <Button 
+                            onClick={() => {
+                              const value = parseFloat(practiceAnswers.problem2Value || "0");
+                              const direction = practiceAnswers.problem2Direction;
+                              
+                              if (direction === "in" && Math.abs(value - 0) < 0.01) {
+                                toast.success("Correct! No additional current is needed as KCL is actually satisfied.");
+                              } else if (direction === "out" && Math.abs(value - 4) < 0.01) {
+                                toast.success("Correct! An additional 4A leaving the node would satisfy KCL.");
+                              } else {
+                                toast.error("Not quite. Check your calculation again.");
+                              }
+                            }}
+                          >
+                            Verify
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardContent>
             </Card>
+            
+            <TipCard title="KCL Problem-Solving Tips">
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Always start by identifying all currents entering and leaving each node</li>
+                <li>Remember that ∑I<sub>in</sub> = ∑I<sub>out</sub> at any junction</li>
+                <li>Draw arrows to clearly indicate current directions</li>
+                <li>For complex circuits, analyze one node at a time</li>
+              </ul>
+            </TipCard>
           </TabsContent>
         </Tabs>
       </div>
