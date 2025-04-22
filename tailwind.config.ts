@@ -52,6 +52,17 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+                // Circuit-specific colors
+                circuit: {
+                    wire: '#2563eb',
+                    junction: '#3b82f6',
+                    resistor: '#f59e0b',
+                    battery: '#10b981',
+                    current: '#8b5cf6',
+                    highlight: '#ef4444',
+                    success: '#22c55e',
+                    warning: '#f59e0b',
+                },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +95,41 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+                'current-flow': {
+                    '0%': { 
+                        opacity: '0',
+                        transform: 'translateX(0%)'
+                    },
+                    '50%': { 
+                        opacity: '1',
+                    },
+                    '100%': { 
+                        opacity: '0',
+                        transform: 'translateX(100%)'
+                    }
+                },
+                'pulse-glow': {
+                    '0%, 100%': { 
+                        opacity: '0.5',
+                        filter: 'drop-shadow(0 0 2px currentColor)' 
+                    },
+                    '50%': { 
+                        opacity: '1',
+                        filter: 'drop-shadow(0 0 8px currentColor)' 
+                    }
+                },
+                'float': {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-5px)' }
+                }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'current-flow': 'current-flow 2s linear infinite',
+                'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                'float': 'float 3s ease-in-out infinite'
 			}
 		}
 	},
