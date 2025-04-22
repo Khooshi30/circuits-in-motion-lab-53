@@ -16,7 +16,7 @@ export function Navbar() {
             <span className="text-white font-bold text-sm">K</span>
           </div>
           <span className="font-bold text-xl text-gray-800 dark:text-white">K's Circuit </span>
-          <span className="text-blue-600 dark:text-blue-400 font-bold">Lab</span>
+          <span className="text-blue-600 dark:text-blue-400 mx-0 my-0 px-0 py-0 font-bold text-xl">Lab</span>
         </Link>
         
         <div className="flex items-center gap-6">
